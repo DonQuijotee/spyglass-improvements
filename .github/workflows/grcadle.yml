@@ -1,0 +1,35 @@
+name: Build NeoForge 1.21.1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "multi-arch/1.21"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Make Gradle Wrapper Executable
+        run: chmod +x ./gradlew
+
+      - name: Build NeoForge
+        run: ./gradlew :neoforge:build
+
+      - name: Upload NeoForge JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: Spyglass-Improvements-NeoForge-1.21.1
+          path: neoforge/build/libs/*.jar
