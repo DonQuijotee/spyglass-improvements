@@ -41,7 +41,7 @@ public class SpyglassImprovementsClient {
     // Tracks the slot were the spyglass is located
     public static int slot = -1;
     // Zoom multiplier
-    public static float MULTIPLIER = .1f;
+    public static float MULTIPLIER = .01f;
 
 
     public static KeyMapping useSpyglass = new KeyMapping(
